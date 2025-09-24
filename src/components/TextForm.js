@@ -55,22 +55,22 @@ export default function TextForm(props) {
         <h1>{props.heading}</h1>
         <div className="mb-3">
         <label htmlFor="myBox" className="form-label"></label>
-        <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode==='dark' ? 'grey' : 'white',color: props.mode==='dark' ? 'white' : 'grey'}} id="myBox" rows="8"></textarea>
-        <button className="btn btn-primary my-2" onClick={handleUpClick}>Convert to UpperCase</button>
-        <button className="btn btn-primary mx-2" onClick={handleLoClick}>Convert to LowerCase</button>
-        <button className="btn btn-primary my-2" onClick={handleCapClick}>Convert to Capitalized</button>
-        <button className="btn btn-primary mx-2" onClick={handleClearClick}>Clear Text</button>
-        <button className="btn btn-primary mx-2" onClick={handleCopyClick}>Copy Text</button>
-        <button className="btn btn-primary mx-2" onClick={handleExtraSpaces}>Handle Extra Spaces</button>
+        <textarea className="form-control"  value={text} onChange={handleOnChange} style={{backgroundColor: props.mode==='dark' ? '#13466e' : 'white',color: props.mode==='dark' ? 'white' : 'grey'}} id="myBox" rows="8"></textarea>
+        <button className="btn btn-primary mx-2 my-2" disabled={text.length===0} onClick={handleUpClick}>Convert to UpperCase</button>
+        <button className="btn btn-primary mx-2 my-2" disabled={text.length===0} onClick={handleLoClick}>Convert to LowerCase</button>
+        <button className="btn btn-primary mx-2 my-2" disabled={text.length===0} onClick={handleCapClick}>Convert to Capitalized</button>
+        <button className="btn btn-primary mx-2 my-2" disabled={text.length===0} onClick={handleClearClick}>Clear Text</button>
+        <button className="btn btn-primary mx-2 my-2" disabled={text.length===0} onClick={handleCopyClick}>Copy Text</button>
+        <button className="btn btn-primary mx-2 my-2" disabled={text.length===0} onClick={handleExtraSpaces}>Handle Extra Spaces</button>
 
         </div>
     </div>
     <div className="container" style={{color: props.mode==='dark' ? 'white' : 'grey'}}>
         <h1>Your Text Summary</h1>
-        <p><b>{text.trim() === '' ? 0 : text.trim().split(/\s+/).length}</b> words and <b>{text.length}</b> characters</p>
-        <p> { 0.008 * text.split(" ").length} minutes to read</p>
+        <p><b>{text.split(" ").filter((element)=>{return element.length!==0}).length}</b> words and <b>{text.length}</b> characters</p>
+        <p> { 0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} minutes to read</p>
         <h2>Preview</h2>
-        <p>{text.length>0 ? text : "Enter Something in the textBox above to preview here"}</p>
+        <p>{text.length>0 ? text : "Nothing to Preview!"}</p>
     </div>
     </>
   )
